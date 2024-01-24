@@ -30,8 +30,9 @@ export class ReservationFormComponent implements OnInit {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
 
     if (id) {
-      let reservation = this.reservationSservice.getReservation(id);
-      if (reservation) this.reservationForm.patchValue(reservation);
+      this.reservationSservice.getReservation(id).subscribe((reservation) => {
+        if (reservation) this.reservationForm.patchValue(reservation);
+      });
     }
   } //Checking whether the form data contians all the required values and the formcontrol name is same as formgroup
 
@@ -44,10 +45,16 @@ export class ReservationFormComponent implements OnInit {
       if (id) {
         //Update
 
-        this.reservationSservice.updateReservation(id, reservation);
+        this.reservationSservice
+          .updateReservation(id, reservation)
+          .subscribe(() => {
+            console.log('Reservation added to list');
+          });
       } else {
         //Create
-        this.reservationSservice.addReservation(reservation);
+        this.reservationSservice.addReservation(reservation).subscribe(() => {
+          console.log('Reservation Updated');
+        });
       }
       this.router.navigate(['/list']);
     }
