@@ -23,7 +23,7 @@ export class AppComponent {
   title = 'hello-world';
   users = DUMMY_USERS;
 
-  selectedUserId = 'u1';
+  selectedUserId = '';
 
   get selectedUser() {
     return this.users.find((user) => user.id === this.selectedUserId)!;

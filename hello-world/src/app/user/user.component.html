@@ -1,5 +1,5 @@
 <div>
-  <button (click)="onSelectedUser()">
+  <button [class.active]="selected" (click)="onSelectedUser()">
     <!-- Property Binding -->
     <!-- <img [src]="'../../assets/users/' + slectedUser.avatar" /> -->
     <!-- Using getters for computed values -->
